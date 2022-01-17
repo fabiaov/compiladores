@@ -5,7 +5,7 @@ DIRECTIVES=-D_UNIX_DECIMAL_NOTATION_
 
 CFLAGS=-I./include -g $(DIRECTIVES)
 
-mybc: lexer.o main.o parser.o symtab.o
+mybc: lexer.o main.o parser.o symtab.o keywords.o
 	$(CC) -o $@  $^
 
 clean:

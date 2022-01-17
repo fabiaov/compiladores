@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tokens.h>
+#include <keywords.h>
 #include <lexer.h>
 #include <parser.h>
 
@@ -63,6 +64,9 @@ void pop (void) {
 	sp--;
 	return aux;
 }
+
+int printresult = 1;
+
 void
 E(void)
 {
@@ -99,7 +103,10 @@ _F_head:
 				/** L-value **/
 				match(ASGN);
 				E();
-				/***/printf("\tstore acc, %s\n", varname);/***/
+				/***/
+				printresult = 0;
+				printf("\tstore acc, %s\n", varname);
+				/***/
 			} else {
 				/** R-value **/
 				/***/printf("\trecall %s, acc\n", varname);/***/
@@ -223,11 +230,25 @@ cmd(void)
 			case '\n':
 				match('\n');
 				break;
+			case QUIT:
+			case EXIT:
+			case BYE:
+				match(QUIT);
+				return;
 			case EOF:
 				match(EOF);
 				return;
 			default:
+				/***/
+				printresult = 1;
+				/***/
+				
 				E();
+				
+				/***/
+				if (printresult) printf("%lg\n", acc)
+				/***/
+				
 				switch (lookahead) {
 					case ';':
 						match(';');

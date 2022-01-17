@@ -3,6 +3,7 @@
 #include <ctype.h>
 
 #include <tokens.h>
+#include <keywords.h>
 #include <lexer.h>
 
 /********
@@ -28,7 +29,7 @@ char lexeme[MAXIDSIZE+1];
 int
 isID(FILE * tape)
 {
-    int             i = 0;
+    int             i = 0, token;
     if (isalpha(lexeme[i] = getc(tape))) {
         /** já é um identificador **/
         /** agora, falta pegar o sufixo [A-Za-z0-9]*, se houver **/
@@ -36,6 +37,7 @@ isID(FILE * tape)
         while (isalnum(lexeme[i] = getc(tape))) i++;
         ungetc(lexeme[i], tape);
 	lexeme[i] = 0;
+	if ((token = iskeyword(lexeme))) return token;
         return ID;
     }
     ungetc(lexeme[i], tape);
