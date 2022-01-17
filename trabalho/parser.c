@@ -202,9 +202,12 @@ match(int expected)
 	if (expected == lookahead) {
 		lookahead = gettoken(source);
 	} else {
+		if ((expected >= ID && lookahead <= NEQ) && (lookahead >= ID && lookahead <= NEQ )){
+		
 		fprintf(stderr,
-				"parser: token inválido; era esperado %d mas foi encontrado %d\n",
-				expected, lookahead);
+				"parser: token inválido; era esperado %s mas foi encontrado %s\n",
+				token[expected - ID], token[lookahead - ID]);
+		}
 		exit(-2);
 	}
 }
