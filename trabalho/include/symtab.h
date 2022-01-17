@@ -58,7 +58,7 @@ typedef struct __symtab__ {
 	int address;
 } SYMTAB;
 #define SYMTAB_MAX_ENTRIES 0x100000 /** 1 mega posições na tabela */ 
-
+extern char symtab[MAXIDSIZE+1][SYMTAB_MAX_ENTRIES];
 
 /*** Parte a ser implementada no symtab.c: ***/
 
@@ -73,5 +73,5 @@ extern double vmemory[SYMTAB_MAX_ENTRIES]; /** esta é a memória virtual da cal
  *  permanecem neste código e serão utilizadas pelo symtab.c através de #include <symtab.h>
  *
  *
- *** Tempo sugerido para conclusão do trabalho em grupo: 2 (duas) horas ***/
+ ***  ***/
 

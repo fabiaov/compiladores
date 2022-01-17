@@ -30,22 +30,39 @@ int lookahead;
 #define oplus lookahead == '+' || lookahead == '-'
 #define otimes lookahead == '*' || lookahead == '/'
 #define ominus lookahead == '-'
+double vmemory[SYMTAB_MAX_ENTRIES]; /** esta é a memória virtual da calculadora */
+
 void store (const char *name, double val) {
 	int address = symtab_lookup(name);
 	if (address < 0) {
-		address = syntab_append(name);
+		address = symtab_append(name);
 	}
 	vmemory[address] = val;
 }
 double recall (const char *name) {
 	int address = symtab_lookup(name);
 	if (address < 0) {
-		address = syntab_append(name);
+		address = symtab_append(name);
 	}
 	return vmemory[address];
 }
 /** define um registrador ficticio **/
 double acc;
+/*** define uma pilha ficticia ***/
+#define MAXSTACKSIZE 1024
+double stack[MAXSTACKSIZE];
+int sp = -1;
+
+void push (double val) {
+	sp++;
+	stack[sp] = val;
+
+}
+void pop (void) {
+	double aux = stack[sp];
+	sp--;
+	return aux;
+}
 void
 E(void)
 {
@@ -61,7 +78,7 @@ E(void)
 _T_head:
 	/***/if (isoplus) {
 		if (opluspush == 0) {
-			printf("\tpush acc\n");
+			/**/ push(acc); /**/
 			opluspush = 1;
 		}
 	}/***/
@@ -69,7 +86,7 @@ _T_head:
 _F_head:
 	/***/if (isotimes) {
 		if (otimespush == 0) {
-			printf("\tpush acc\n");
+			/**/ push(acc); /**/
 			otimespush = 1;
 		}
 	}/***/
@@ -89,21 +106,21 @@ _F_head:
 			}
 			break;
 		case DEC:
-			printf("\tmov %s, acc\n", lexeme);
+			/***/ acc = atoi(lexeme);/***/
 			match(DEC);
 			break;
 #ifdef _UNIX_DECIMAL_NOTATION_
 		case OCTAL:
-			printf(" %s ", lexeme);
+			/***/ acc = atoi(lexeme);/***/
 			match(OCTAL);
 			break;
 		case HEXA:
-			printf(" %s ", lexeme);
+			/***/ acc = atoi(lexeme);/***/
 			match(HEXA);
 			break;
 #endif
 		case FLT:
-			printf(" %s ", lexeme);
+			/***/ acc = atof(lexeme);/***/
 			match(FLT);
 			break;
 		default:
@@ -117,10 +134,10 @@ _F_head:
 	/***/if(isotimes){
 		switch (isotimes) {
 			case '*':
-				printf("\tmul acc, stack[sp]\n");
+				/***/ stack[sp] *= acc; /***/
 				break;
 			case '/':
-				printf("\tdiv acc, stack[sp]\n");
+				/***/ stack[sp] /= acc; /***/
 				break;
 		}
 		isotimes = 0;
@@ -136,7 +153,7 @@ _F_head:
 	// end of term
 
 	/***/if (otimespush) {
-		printf("\tpop acc\n");
+		/**/ acc = pop(); /**/
 		otimespush = 0;
 	}/***/
 
@@ -145,10 +162,10 @@ _F_head:
 	/***/if(isoplus){
 		switch (isoplus) {
 			case '+':
-				/**/printf("\tadd acc, stack[sp]\n");/**/
-				break;
+				/***/ stack[sp] += acc;/***/
+				break; 
 			case '-':
-				printf("\tsub acc, stack[sp]\n");
+				/***/ stack[sp] -= acc;/***/
 				break;
 		}
 		isoplus = 0;
@@ -164,7 +181,7 @@ _F_head:
 	// end of E
 
 	/***/if (opluspush) {
-		printf("\tpop acc\n");
+		/**/ acc = pop(); /**/
 		opluspush = 0;
 	}/***/
 
