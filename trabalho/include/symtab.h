@@ -1,9 +1,9 @@
 /**@<symtab.h>::**/
+
 /**
- * Tue Jan  4, 2022
- * Prof. Dr. Eraldo P. Marinho
- * Compiladores
- */
+	Grupo 06 
+	integrantes: F·bio VinÌcius Luciano da Silva, Jo„o Victor Fleming, Alexandre dos Anjos Souza
+**/
 
 /**
  * Aqui ser√° modelada a tabela de s√≠mbolos, nome geral symtab[SYMTAB_MAX_ENTRIES],

@@ -1,4 +1,10 @@
 /**@<parser.c>::**/
+
+/**
+	Grupo 06 
+	integrantes: Fábio Vinícius Luciano da Silva, João Victor Fleming, Alexandre dos Anjos Souza
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

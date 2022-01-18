@@ -1,9 +1,9 @@
 /**@<symtab.c>::**/
+
 /**
- * Tue Jan  4, 2022
- * Prof. Dr. Eraldo P. Marinho
- * Compiladores
- */
+	Grupo 06 
+	integrantes: F·bio VinÌcius Luciano da Silva, Jo„o Victor Fleming, Alexandre dos Anjos Souza
+**/
 
 /*** Aqui ser√° implementado o que se encontra como extern no ./include/symtab.h
  *   V√£o para o referido c√≥digo cabe√ßalho ***/

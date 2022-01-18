@@ -1,4 +1,10 @@
 /** <parser.h>:: **/
+
+/**
+	Grupo 06 
+	integrantes: Fábio Vinícius Luciano da Silva, João Victor Fleming, Alexandre dos Anjos Souza
+**/
+
 extern char lexeme[];
 extern int lookahead;
 
