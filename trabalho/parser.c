@@ -33,6 +33,7 @@ int lookahead;
 #define ominus lookahead == '-'
 double vmemory[SYMTAB_MAX_ENTRIES]; /** esta é a memória virtual da calculadora */
 
+
 void store (const char *name, double val) {
 	int address = symtab_lookup(name);
 	if (address < 0) {
@@ -105,11 +106,13 @@ _F_head:
 				E();
 				/***/
 				printresult = 0;
-				printf("\tstore acc, %s\n", varname);
+				store(varname, acc);
+				//printf("\tstore acc, %s\n", varname);
 				/***/
 			} else {
 				/** R-value **/
-				/***/printf("\trecall %s, acc\n", varname);/***/
+				acc = recall(varname);
+				// /***/printf("\trecall %s, acc\n", varname);/***/
 			}
 			break;
 		case DEC:
