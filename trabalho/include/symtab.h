@@ -62,7 +62,7 @@ extern char symtab[MAXIDSIZE+1][SYMTAB_MAX_ENTRIES];
 
 /*** Parte a ser implementada no symtab.c: ***/
 
-extern SYMTAB symtab[SYMTAB_MAX_ENTRIES]; /** as SYMTAB_MAX_ENTRIES instâncias da tabela de símbolos */
+// extern SYMTAB symtab[SYMTAB_MAX_ENTRIES]; /** as SYMTAB_MAX_ENTRIES instâncias da tabela de símbolos */
 extern int symtab_lookup(const char *name); /** busca o nome e retorna a posição encontrada; se não encontrar, retorna -1 */
 extern int symtab_append(const char *name); /** concatena (põe no apêndice) a nova entrada (cuidado com duplicatas) */
 extern int symtab_next_entry; /** primeira posição na tabela é 0 */

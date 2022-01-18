@@ -1,12 +1,15 @@
 /**@<tokens.h>::**/
-enum{
-	ID	=	1024,
+
+enum {
+	ID = 1024,
 	DEC,
-	FLT,
-	ASGN,
 	OCTAL,
 	HEXA,
+	FLT,
+	ASGN,
 	GEQ,
 	LEQ,
 	NEQ,
 };
+
+extern char *token[];

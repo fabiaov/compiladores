@@ -17,7 +17,7 @@
    for (i = 0; i < symtab_next_entry; i++) {
      if (strcmp(symtab[i],name) == 0) return i;
    }
-   return -1
+   return -1;
  } 
  int symtab_append(const char *name) {
    int i;

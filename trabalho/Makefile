@@ -1,7 +1,10 @@
-#Makefile for the project mypas
+# Grupo 06 
+# integrantes: Fábio Vinícius Luciano da Silva, João Victor Fleming, Alexandre dos Anjos Souza
+#Makefile for the project myBc
 
 # DIRECTIVES=-D_COMMAND_INTERPRETER_
-DIRECTIVES=-D_UNIX_DECIMAL_NOTATION_
+DIRECTIVES=-D_COMMAND_INTERPRETER_ -D_UNIX_DECIMAL_NOTATION_
+#DIRECTIVES=-D_UNIX_DECIMAL_NOTATION_
 
 CFLAGS=-I./include -g $(DIRECTIVES)
 

@@ -5,8 +5,8 @@
 #include <tokens.h>
 #include <keywords.h>
 #include <lexer.h>
+#include <symtab.h>
 #include <parser.h>
-
 /*
  Nesta aula, vamos aproveitar a versão da aula passada para implementarmos
  uma forma simplificada de uma tabela de símbolos. Para tanto, criem um código
@@ -60,7 +60,7 @@ void push (double val) {
 	stack[sp] = val;
 
 }
-void pop (void) {
+double pop (void) {
 	double aux = stack[sp];
 	sp--;
 	return aux;
@@ -252,7 +252,7 @@ cmd(void)
 				E();
 				
 				/***/
-				if (printresult) printf("%lg\n", acc)
+				if (printresult) printf("%lg\n", acc);
 				/***/
 				
 				switch (lookahead) {

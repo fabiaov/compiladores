@@ -8,4 +8,4 @@ void match(int);
 void store(const char *name, double val);
 double recall(const char *name);
 void push (double val);
-void pop (void);
+double pop (void);
