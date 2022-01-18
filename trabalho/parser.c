@@ -202,17 +202,33 @@ FILE           *source;
 	void
 match(int expected)
 {
-	if (expected == lookahead) {
-		lookahead = gettoken(source);
-	} else {
-		if ((expected >= ID && lookahead <= NEQ) && (lookahead >= ID && lookahead <= NEQ )){
-		
-		fprintf(stderr,
-				"parser: token inválido; era esperado %s mas foi encontrado %s\n",
-				token[expected - ID], token[lookahead - ID]);
-		}
-		exit(-2);
-	}
+    if(expected == lookahead)
+    {
+        lookahead = gettoken(source);
+    }
+    else
+    {
+        fprintf(stderr, "Error: Mismatch token. ");
+
+        if(isascii(expected))
+        {
+            fprintf(stderr, "Expected '%c' " , expected);
+        }
+        else
+        {
+            fprintf(stderr, "Expected %s, " , token[expected % ID]);
+        }
+
+        if(isascii(lookahead))
+        {
+            fprintf(stderr, "found '%c'\n" , lookahead);
+        }
+        else
+        {
+            fprintf(stderr, "found %s\n" , token[lookahead % ID]);
+        }
+        exit(-2);
+    }
 }
 
 #ifdef _COMMAND_INTERPRETER_
